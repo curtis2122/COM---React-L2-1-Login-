@@ -3,7 +3,7 @@ import React,{ useState, useMemo } from 'react';
 import { Col, Row, Card, Spin } from 'antd';
 import { Link } from 'react-router-dom';
 
-class BlogGrid extends React.Component {
+class PublicBlogGrid extends React.Component {
 
 
 
@@ -37,12 +37,14 @@ class BlogGrid extends React.Component {
               <p>Sex: {post.sex}</p>
               <p>Shelter ID: {post.shelterid}</p>
               <p>Staff ID: {post.staffid}</p>
+              <p>breed: {post.breed}</p>
+              
               <img src={post.imageurl} /><br />
               <p></p>
               <Link to={`/detaildog/${post.id}`}>Details </Link><br/>
               {/*<Link to={`/updatedog/${post.id}`}>Update </Link>
-               <Link to={`/deletedog/${post.id}`}>Delete</Link>*/}
-           <Link to={`/updatedog/${post.id}`}>Update or Delete </Link>
+               <Link to={`/deletedog/${post.id}`}>Delete</Link>
+           <Link to={`/updatedog/${post.id}`}>Update or Delete </Link>*/}
 
             </Card>
           </Col>
@@ -57,4 +59,4 @@ class BlogGrid extends React.Component {
   }
 }
 
-export default BlogGrid;
+export default PublicBlogGrid;

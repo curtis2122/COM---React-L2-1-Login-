@@ -57,7 +57,7 @@ function Dog() {
                   <p>Staff ID: {staffid}</p> 
                   <img src={imageurl} /><br/>
                   <Link to={`/detaildog/${id}`}>Details </Link>
-               <Link to={`/updatedog/${id}`}>Update & Delete </Link>
+        
 
                 </Card>
               </Col>))
@@ -67,7 +67,7 @@ function Dog() {
 
   }
   }
-  
+  //       <Link to={`/updatedog/${id}`}>Update & Delete </Link>
   //               <Link to={`/deletedog/${id}`}>Delete</Link>
  
   //console.log(articles)

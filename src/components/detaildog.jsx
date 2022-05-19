@@ -32,11 +32,12 @@ function DetailDog(props) {
    // console.log(article)
     return (
         <>    
-          <h1>{dog.name}</h1>
-          <p>{dog.age}</p>      
-          <p>{dog.sex}</p>      
-          <p>{dog.shelterid}</p>      
-          <p>{dog.staffid}</p>      
+          <h1>Name: {dog.name}</h1>
+          <p>Age:{dog.age}</p>      
+          <p>Sex:{dog.sex}</p>      
+          <p>Shelter ID{dog.shelterid}</p>      
+          <p>Staff ID{dog.staffid}</p>      
+            <img src={dog.imageurl} /><br/>
           <Button type="primary" icon={<RollbackOutlined />} onClick={()=>navigate(-1)} />
         </>
       )

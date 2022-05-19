@@ -1,10 +1,11 @@
 import React from "react";
-import Dog from "./dog"
+import PublicSearch from "./publicSearch"
+
 //import SearchPage from '../search/searchPage';
 
 function Home() {  
 
-  return <Dog />;    
+  return <PublicSearch />;    
     
   
 }  

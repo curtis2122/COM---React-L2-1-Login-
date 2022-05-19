@@ -9,15 +9,19 @@ function onFinish(values) {
   
   const {confirm, ...data} = values;
   //http.post('/users', data)
- if(values.code2 = "8008"){
+  //if check 
+ if(values.code2 == '8008'){
   http.post('/users', {
     email: data.email,
     password: data.password,
     username: data.username,
-    role: 'employee'})
+    
+        lastname: data.lastname,
+    firstname: data.firstname,
+    role: 'admin'})
     .then((response)=>{
     console.log(response.data)
-    alert('User created!');
+    alert('Employee created!');
   })
   .catch((err)=>{
     console.log(err)
@@ -28,6 +32,9 @@ function onFinish(values) {
     email: data.email,
     password: data.password,
     username: data.username,
+        
+        lastname: data.lastname,
+    firstname: data.firstname,
     role: 'user'})
        .then((response)=>{
     console.log(response.data)
@@ -78,6 +85,12 @@ const usernameRules = [
     { required: true, message: 'Please input your username!', whitespace: true }
 ]
 
+const firstnameRules = [
+    { required: true, message: 'Please input your firstname!', whitespace: true }
+]
+  const lastnameRules = [
+    { required: true, message: 'Please input your  lastname!', whitespace: true }
+]
 const codeRules = [
     { required: false, message: 'Please input your code!', whitespace: true }
 ]
@@ -94,7 +107,17 @@ const tailFormItemLayout = {
 function RegistrationForm() {  
   return (
     <Form name="register" {...formItemLayout} scrollToFirstError onFinish={onFinish}>
-        
+
+              <Form.Item name="username" label="Username" rules={usernameRules}>
+            <Input />
+        </Form.Item>
+                 <Form.Item name="firstname" label="first Name" rules={firstnameRules}>
+            <Input />
+        </Form.Item>
+          
+            <Form.Item name="lastname" label="Last name" rules={lastnameRules}>
+            <Input />
+        </Form.Item>
         <Form.Item name="email" label="E-mail" rules={emailRules}>
             <Input />
         </Form.Item>
@@ -107,10 +130,8 @@ function RegistrationForm() {
             <Input.Password />
         </Form.Item>
 
-        <Form.Item name="username" label="Username" rules={usernameRules}>
-            <Input />
-        </Form.Item>
-        <Form.Item name="code2" label="code2" rules={codeRules}>
+
+        <Form.Item name="code2" label="Special code" rules={codeRules}>
             <Input />
         </Form.Item>
 

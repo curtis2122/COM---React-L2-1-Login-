@@ -1,6 +1,9 @@
 import React from "react";
-import { Form, Input, Button } from 'antd';
+import { Form, Input, InputNumber, Button } from 'antd';
 import http from '../common/http-common'
+
+
+
 
 function onFinish(values) {
   console.log("Success", values)
@@ -10,9 +13,11 @@ function onFinish(values) {
   http.post('/dogs', {
     name: data.name,
     age: Number(data.age),
+    breed: data.breed,
     sex: data.sex,
     shelterid: Number(data.shelterid),
-    staffid: Number(data.staffid)
+    staffid: Number(data.staffid),
+    imageurl:data.imageurl
   })
   .then((response)=>{
     console.log(response.data)
@@ -49,16 +54,22 @@ const NameRules = [
     { required: true, message: 'Please input your Dog Name!', whitespace: true }
 ]
 const AgeRules = [
-    { required: true, message: 'Please input the dog Age ', whitespace: true }
+    { required: true, type: 'number',message: 'Please input the dog Age ', whitespace: true }
+]
+const BreedRules = [
+    { required: true, message: 'Please input your Dog Breed!', whitespace: true }
 ]
 const SexRules = [
-    { required: true, message: 'Please input Sex', whitespace: true }
+    { required: true, max : 1,type:'string', message: 'Please input Sex, only a letter M or F', whitespace: true }
 ]
 const shelterIDRules = [
-    { required: true, message: 'Please input shelterID ID', whitespace: true }
+    { required: true, max : 2,type: 'number',message: 'Please input shelterID ID', whitespace: true }
 ]
 const StaffIDRules = [
-    { required: true, message: 'Please input staff ID', whitespace: true }
+    { required: true, max : 3,type: 'number', message: 'Please input staff ID', whitespace: true }
+]
+const ImageRules = [
+    { required: false, message: 'Please input Image Link', whitespace: true }
 ]
 const formItemLayout = {
   labelCol: { xs: { span: 24 }, sm: { span: 6 } },
@@ -78,15 +89,21 @@ function AddDogform() {
             <Input />
         </Form.Item>
         <Form.Item name="age" label="Age" rules={AgeRules}>
+            <InputNumber />
+        </Form.Item>
+       <Form.Item name="breed" label="Breed" rules={BreedRules}>
             <Input />
         </Form.Item>
               <Form.Item name="sex" label="Sex" rules={SexRules}>
             <Input />
                     </Form.Item>
                <Form.Item name="shelterid" label="shelter ID" rules={shelterIDRules}>
-            <Input />
+           <InputNumber />
             </Form.Item>
                <Form.Item name="staffid" label="staff ID" rules={StaffIDRules}>
+            <InputNumber />
+        </Form.Item>
+                  <Form.Item name="imageurl" label="Image Url" rules={ImageRules}>
             <Input />
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>

@@ -13,7 +13,7 @@ function UpdateDog(props) {
 	const navigate = useNavigate();
 
 	const onFinish = values => {
-		console.log('Success up', values);
+		console.log('Success updated dogs info', values);
 
 		const { confirm, ...data } = values;
 		//  http.post('/articles',data)
@@ -23,11 +23,12 @@ function UpdateDog(props) {
 				age: Number(data.age),
 				sex: data.sex,
 				shelterid: Number(data.shelterid),
-				staffid: Number(data.staffid)
+				staffid: Number(data.staffid),
+        imageurl: data.imageurl
 			})
 			.then(response => {
 				console.log(response.data);
-				alert('Dogs up!');
+				alert('Dogs updated!');
 			})
 			.catch(err => {
 				console.log(err);
@@ -39,10 +40,15 @@ function UpdateDog(props) {
 
 		// React.useEffect(()=> {
 		http
-			.delete(`/dogs/${aid}`)
+			.delete(`/dogs/${aid}`, {}, {
+        auth: {
+          username: 'candy45',
+          password: 'test123',
+        }
+    })
 			.then(response => {
 				console.log(response.data);
-				alert('Dogs delete!');
+				alert('Dogs deleted!');
 			})
 			.then(() => {
 				setLoading(false);
@@ -91,6 +97,8 @@ const shelterIDRules = [
 		{ required: true, message: 'Please input shelterID ID', whitespace: true }
 	];*/
 	const StaffIDRules = [{ required: true, message: 'Please input staff ID' }];
+  	const imageurlRules = [{ required: false, message: 'Please input iamge URL' }];
+  
 	const formItemLayout = {
 		labelCol: { xs: { span: 24 }, sm: { span: 6 } },
 		wrapperCol: { xs: { span: 24 }, sm: { span: 12 } }
@@ -125,10 +133,13 @@ const shelterIDRules = [
 					<Form.Item name="sex" label="Sex" rules={SexRules}>
 						<Input />
 					</Form.Item>
-					<Form.Item name="shelterid" label="shelterId" rules={shelterIDRules}>
+					<Form.Item name="shelterid" label="Shelter ID" rules={shelterIDRules}>
 						<Input />
 					</Form.Item>
-					<Form.Item name="staffid" label="staffId" rules={StaffIDRules}>
+					<Form.Item name="staffid" label="Staff ID" rules={StaffIDRules}>
+						<Input />
+					</Form.Item>
+          					<Form.Item name="imageurl" label="Image URL" rules={imageurlRules}>
 						<Input />
 					</Form.Item>
 					<Form.Item {...tailFormItemLayout}>

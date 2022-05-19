@@ -1,4 +1,4 @@
-const onClick = ({ key }) => {
+/*const onClick = ({ key }) => {
 	let value;
 	console.log(key);
 	if ( key === '0'){
@@ -30,4 +30,20 @@ const onClick = ({ key }) => {
     {['Age', 'Breed', 'Sex', 'Location', 'Clear Filter'].map((value, i) => <Menu.Item  key={i}  onClick={!press && onClick } >{value}  </Menu.Item>)}
   </Menu>
 );
-	
+
+  {/*for filter */
+/*}
+      		<Dropdown overlay={menu}>
+						 <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+      Filter By <DownOutlined />
+				</a>
+				</Dropdown>
+      
+          <Search placeholder="Search your new dog! Default search by Name"
+            allowClear
+            enterButton="Search"
+            size="small"
+            style ={BarStyling}
+            onSearch={onSearch}/>
+*/
+              

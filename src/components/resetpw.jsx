@@ -15,7 +15,7 @@ function UpdateUser(props) {
    const token = localStorage.getItem("tokens");
 
  let savedToken = JSON.parse(token);
-//  const userrole = localStorage.getItem("role"); 
+
    /*     let headers = new Headers();
         headers.append('Authorization', 'Basic ' + btoa(savedToken.username + ":" + savedToken.password));
         headers.append('Content-Type', 'application/json');*/
@@ -28,48 +28,26 @@ function UpdateUser(props) {
 headers = headers.set('Content-Type', 'application/json');*/
 
 	const onFinish = values => {
-		console.log('Success update', values);
+		console.log('Success reset password', values);
     
 		const { confirm, ...data } = values;
 		//  http.post('/articles',data)
 		http
 			.put(`/users/${aid}`, { 
-        email: data.email,
     password: data.password,
-        username: data.username,
-        lastname: data.lastname,
-    firstname: data.firstname
-			//	shelterid: Number(data.shelterid)
+      //  passwordhints: data.passwordhints//	shelterid: Number(data.shelterid)
 				
 			},{
     headers:headers})
 			.then(response => {
 				console.log(response.data);
-				alert('User info is updated!');
+				alert('Users updated password!');
 			})
 			.catch(err => {
 				console.log(err);
 			});
 	};
 
-	const onFinish2 = values => {
-		console.log('delete', values);
-
-		// React.useEffect(()=> {
-		http
-			.delete(`/users/${aid}`,{
-    headers:headers})
-			.then(response => {
-				console.log(response.data);
-				alert('Users delete!');
-			})
-			.then(() => {
-				setLoading(false);
-			})
-			.catch(err => {
-				console.log(err);
-			});
-	};
 
 	//useEffect(() => {
 	// DELETE request using axios with error handling
@@ -98,11 +76,7 @@ headers = headers.set('Content-Type', 'application/json');*/
 			});
 	}, []);
 
-const emailRules = [
-    {type: 'email', message: 'The input is not valid E-mail!'},
-    {required: true, message: 'Please input your E-mail!' }
-];
-
+  
 const passwordRules = [
     { required: true, message: 'Please input your password!' }
 ];
@@ -118,21 +92,12 @@ const confirmRules = [
         }
     })
 ];
-
-const usernameRules = [
-    { required: true, message: 'Please input your username!', whitespace: true }
-]
-const firstnameRules = [
-    { required: true, message: 'Please input your firstname!', whitespace: true }
-]
-  const lastnameRules = [
-    { required: true, message: 'Please input your  lastname!', whitespace: true }
-]
   
-const codeRules = [
-    { required: false, message: 'Please input your code!', whitespace: true }
+const PasswordhintsRules = [
+    { required: false, message: 'Please input your Password hints!', whitespace: true }
 ]
 
+  
 const formItemLayout = {
   labelCol: { xs: { span: 24 }, sm: { span: 6 } },
   wrapperCol: { xs: { span: 24 }, sm: { span: 12 } }
@@ -145,8 +110,6 @@ const tailFormItemLayout = {
   
 	console.log(user);
 
-  
-
 	if (loading) {
 		return <div>loading...</div>;
 	} else if (!user) {
@@ -156,29 +119,15 @@ const tailFormItemLayout = {
 		return (
 			<>
 				<Form
-					name="updateuser"
+					name="updatepw"
 					{...formItemLayout}
 					scrollToFirstError
 					initialValues={user}
 					onFinish={onFinish}
 				>
           <br/>
-                  <Form.Item name="username" label="Username" rules={usernameRules}>
-            <Input disabled={true}/>
-        </Form.Item>
+               
 
-            <Form.Item name="firstname" label="first Name" rules={firstnameRules}>
-            <Input />
-        </Form.Item>
-          
-            <Form.Item name="lastname" label="Last name" rules={lastnameRules}>
-            <Input />
-        </Form.Item>
-          
-				 <Form.Item name="email" label="E-mail" rules={emailRules}>
-            <Input />
-        </Form.Item>
-          
         <Form.Item name="password" label="Password" rules={passwordRules} hasFeedback>
             <Input.Password />
         </Form.Item>
@@ -186,34 +135,23 @@ const tailFormItemLayout = {
         <Form.Item name="confirm" label="Confirm Password" rules={confirmRules} hasFeedback>
             <Input.Password />
         </Form.Item>
-        
 
-
+     <Form.Item name="passwordhints" label="Passwordhints" rules={PasswordhintsRules}>
+            <Input />
+        </Form.Item>
 					<Form.Item {...tailFormItemLayout}>
 						<Button type="primary" htmlType="submit">
-							Update
+							Update PW
 						</Button>
 					</Form.Item>
-          
-				</Form>
-				<Form
-					name="deleteuser"
-					{...formItemLayout}
-					scrollToFirstError
-					//    initialValues={dog}
-					onFinish={onFinish2}
-				>
-					<Form.Item {...tailFormItemLayout}>
-						<Button type="primary" htmlType="submit">
-							Delete
-						</Button>
-          <div> </div>
+	
+			
             						<Button
 							type="primary"
 							icon={<RollbackOutlined />}
 							onClick={() => navigate(-1)}
 						/>
-					</Form.Item>
+			
 
 				</Form>
 			</>
