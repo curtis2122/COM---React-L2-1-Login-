@@ -29,32 +29,20 @@ function DetailDog(props) {
       <div>There is no such dog.</div>
     )
   } else {
-   // console.log(article)
+   
     return (
         <>    
           <h1>Name: {dog.name}</h1>
           <p>Age:{dog.age}</p>      
           <p>Sex:{dog.sex}</p>      
-          <p>Shelter ID{dog.shelterid}</p>      
-          <p>Staff ID{dog.staffid}</p>      
-            <img src={dog.imageurl} /><br/>
+          <p>Shelter ID: {dog.shelterid}</p>      
+          <p>Staff ID: {dog.staffid}</p>      
+            Image :<img src={dog.imageurl} /><br/>
           <Button type="primary" icon={<RollbackOutlined />} onClick={()=>navigate(-1)} />
         </>
       )
   }
-  /*
-  for(const article of articles) {  
-  if(article.id==aid)  {      
-      return(
-        <>    
-          <h1>{article.title}</h1>
-          <p>{article.fullText}</p>            
-          <Button type="primary" icon={<RollbackOutlined />} onClick={()=>navigate(-1)} />
-        </>
-      );
-    }
-  }
-  */
+  
 }
 
 export default DetailDog;

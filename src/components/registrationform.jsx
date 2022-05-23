@@ -15,7 +15,8 @@ function onFinish(values) {
     email: data.email,
     password: data.password,
     username: data.username,
-    
+           avatarurl:data.avatarurl,
+    	shelterid: Number(data.shelterid),
         lastname: data.lastname,
     firstname: data.firstname,
     role: 'admin'})
@@ -32,8 +33,9 @@ function onFinish(values) {
     email: data.email,
     password: data.password,
     username: data.username,
-        
-        lastname: data.lastname,
+       avatarurl:data.avatarurl,
+        	shelterid: Number(data.shelterid),
+       lastname: data.lastname,
     firstname: data.firstname,
     role: 'user'})
        .then((response)=>{
@@ -80,7 +82,12 @@ const confirmRules = [
         }
     })
 ];
-
+const shelteridRules = [
+    { required: false, message: 'Please input shelterid !', whitespace: true }
+]
+const ImageRules = [
+    { required: false, message: 'Please input Image Link', whitespace: true }
+]
 const usernameRules = [
     { required: true, message: 'Please input your username!', whitespace: true }
 ]
@@ -129,7 +136,13 @@ function RegistrationForm() {
         <Form.Item name="confirm" label="Confirm Password" rules={confirmRules} hasFeedback>
             <Input.Password />
         </Form.Item>
-
+       <Form.Item name="shelterid" label="Shelter id " rules={shelteridRules}>
+            <Input />
+        </Form.Item>
+          
+         <Form.Item name="avatarurl" label="Image Url" rules={ImageRules}>
+            <Input />
+        </Form.Item>
 
         <Form.Item name="code2" label="Special code" rules={codeRules}>
             <Input />

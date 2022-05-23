@@ -96,6 +96,39 @@ const SearchPage = (props) => {
 
      setDogList(filtered);
   }
+   const onFilter5=()=>{
+    const filtered = dogListDefault.filter(listings => {
+     return listings.shelterid=='1';
+     })
+     console.log("Show the dogs in location 1 Coventry : ", filtered);    
+     setDogList(filtered);
+  }
+
+        const onFilter6=()=>{
+    const filtered = dogListDefault.filter(listings => {
+     return listings.shelterid=='2';
+     })
+     console.log("Show the dogs in location 2 Manchester : ", filtered);
+
+     setDogList(filtered);
+  }
+
+    const onFilter7=()=>{
+    const filtered = dogListDefault.filter(listings => {
+     return listings.shelterid=='3';
+     })
+     console.log("Show the dogs in location  London : ", filtered);
+
+     setDogList(filtered);
+  }
+     const ClearFilter=()=>{
+const filtered = dogListDefault.filter(listings => {
+     return listings;
+     })
+     console.log("Clear Filter", filtered);
+
+     setDogList(filtered);
+  }
    return (
     <>
 
@@ -106,7 +139,7 @@ const SearchPage = (props) => {
     <br/> 
       <br/>
              <Button onClick={onFilter2}> Filter Age bigger than 3 </Button> 
-        <> </>    <Button onClick={onFilter3}> Filter Sex is Female </Button>  <> </>  <Button onClick={onFilter4}> Filter Sex is Male </Button>
+        <> </>    <Button onClick={onFilter3}> Filter Sex is Female </Button>  <> </>  <Button onClick={onFilter4}> Filter Sex is Male </Button>   <> </>  <br/>    <Button onClick={onFilter5}> Dogs in Location 1 Coventry </Button> <> </>    <Button onClick={onFilter6}> Dogs in Location 2 Manchester  </Button> <> </>    <Button onClick={onFilter7}> Dogs in Location 3 London  </Button> <> </>  <Button onClick={ClearFilter}> ClearFilter </Button>
            
      			
       

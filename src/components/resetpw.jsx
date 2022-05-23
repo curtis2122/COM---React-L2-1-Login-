@@ -127,7 +127,9 @@ const tailFormItemLayout = {
 				>
           <br/>
                
-
+     <Form.Item name="username" label="Username" >
+           <Input disabled={true}/>
+        </Form.Item>
         <Form.Item name="password" label="Password" rules={passwordRules} hasFeedback>
             <Input.Password />
         </Form.Item>

@@ -141,8 +141,8 @@ if(isLoggedIn){
 				<p>Canine Dogs Shelter (connected to Dog API )
           <br />
         Shelter Location 1. Coventry  ,
-        2. Hong Kong  ,
-        3. Lodon  ,4. Manchester </p>
+        2. Manchester  ,
+        3. Lodon  </p>
 			</Footer>
 
 

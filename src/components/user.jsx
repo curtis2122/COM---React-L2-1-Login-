@@ -122,12 +122,15 @@ fetch('https://COMBlog28032022.curtiswang1.repl.co/api/v1/users/login', {
 			return (
 				<Row justify="space-around">
 					{users &&
-						users.map(({ id, username, email, shelterid, role }) => (
+						users.map(({ id, username, firstname, lastname, email, shelterid, role, avatarurl }) => (
 							<Col span={8} key={id}>
 								<Card title={username} style={{ width: 300 }} bordered={true}>
-									<p>email: {email}</p>
-									<p>shelterid ID: {shelterid}</p>
-									<p>Role: {role}</p>
+                  			<p>First Name: {firstname}</p>
+                  			<p>Lastname: {lastname}</p>
+									<p>Email: {email}</p>
+									<p>Shelterid ID: {shelterid}</p>
+									<p>User Role: {role}</p>
+                   <img src={avatarurl} width="220" height="180" /><br />
 									<p />
 
 									<Link to={`/updateuser/${id}`}>Update or Delete </Link>

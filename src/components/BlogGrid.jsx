@@ -37,11 +37,11 @@ class BlogGrid extends React.Component {
               <p>Sex: {post.sex}</p>
               <p>Shelter ID: {post.shelterid}</p>
               <p>Staff ID: {post.staffid}</p>
-              <img src={post.imageurl} /><br />
+              <p>breed: {post.breed}</p>
+              <img src={post.imageurl} width="220" height="180"/><br />
               <p></p>
               <Link to={`/detaildog/${post.id}`}>Details </Link><br/>
-              {/*<Link to={`/updatedog/${post.id}`}>Update </Link>
-               <Link to={`/deletedog/${post.id}`}>Delete</Link>*/}
+             
            <Link to={`/updatedog/${post.id}`}>Update or Delete </Link>
 
             </Card>

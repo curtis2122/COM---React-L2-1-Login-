@@ -12,6 +12,7 @@ function UpdateDog(props) {
 	const [dog, setDog] = React.useState(null);
 	const navigate = useNavigate();
 
+  
 	const onFinish = values => {
 		console.log('Success updated dogs info', values);
 
@@ -21,7 +22,8 @@ function UpdateDog(props) {
 			.put(`/dogs/${aid}`, {
 				name: data.name,
 				age: Number(data.age),
-				sex: data.sex,
+       breed: data.breed,
+        sex: data.sex,
 				shelterid: Number(data.shelterid),
 				staffid: Number(data.staffid),
         imageurl: data.imageurl
@@ -40,7 +42,9 @@ function UpdateDog(props) {
 
 		// React.useEffect(()=> {
 		http
-			.delete(`/dogs/${aid}`, {}, {
+//      .delete(`/dogs/${aid}`,{
+//   headers:headers})
+			.delete(`/dogs/${aid}`, {
         auth: {
           username: 'candy45',
           password: 'test123',
@@ -87,16 +91,31 @@ function UpdateDog(props) {
 	const NameRules = [
 		{ required: true, message: 'Please input your Dog Name!' }
 	];
-	const AgeRules = [{ required: true, message: 'Please input the dog Age ' }];
-	const SexRules = [{ required: true, message: 'Please input Sex' }];
-	const shelterIDRules = [
+//	const AgeRules = [{ required: true, message: 'Please input the dog Age ' }];
+  const AgeRules = [
+    { required: true, min:1,  max : 100, type: 'number',message: 'Please input the dog Age ', whitespace: true }
+];
+   const BreedRules = [
+    { required: true, message: 'Please input your Dog Breed!', whitespace: true }
+];
+//	const SexRules = [{ required: true, message: 'Please input Sex' }];
+  const SexRules = [
+    { required: true, max : 1,type:'string', message: 'Please input Sex, only a letter M or F', whitespace: true }
+];
+	/*const shelterIDRules = [
 		{ required: true, message: 'Please input shelterID ID' }
-	];
+	];*/
+  const shelterIDRules = [
+    { required: true, min:0 ,max : 3,type: 'number',message: 'Please input shelterID ID', whitespace: true }
+];
+ 
 	/*const shelterIDRules = [
 const shelterIDRules = [
 		{ required: true, message: 'Please input shelterID ID', whitespace: true }
 	];*/
-	const StaffIDRules = [{ required: true, message: 'Please input staff ID' }];
+	const StaffIDRules = [
+    { required: true, min:0 ,max : 100,type: 'number', message: 'Please input staff ID', whitespace: true }
+];
   	const imageurlRules = [{ required: false, message: 'Please input iamge URL' }];
   
 	const formItemLayout = {
@@ -130,6 +149,9 @@ const shelterIDRules = [
 					<Form.Item name="age" label="Age" rules={AgeRules}>
 						<Input />
 					</Form.Item>
+            <Form.Item name="breed" label="Breed" rules={BreedRules}>
+            <Input />
+        </Form.Item>
 					<Form.Item name="sex" label="Sex" rules={SexRules}>
 						<Input />
 					</Form.Item>

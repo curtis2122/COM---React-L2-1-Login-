@@ -1,7 +1,7 @@
 import React from "react";
 import AddDogform from "./AddDogform"
 
-//25-4
+
 function status(response) {
   if(response.status>=200 && response.status<300){
     return response;

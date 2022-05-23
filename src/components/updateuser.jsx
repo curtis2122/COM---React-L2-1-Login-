@@ -20,10 +20,10 @@ function UpdateUser(props) {
         headers.append('Authorization', 'Basic ' + btoa(savedToken.username + ":" + savedToken.password));
         headers.append('Content-Type', 'application/json');*/
   
-  let headers = {
+ /* let headers = {
   'Content-Type': 'application/json',
   'Authorization':  'Basic ' + btoa(savedToken.username + ":" + savedToken.password)
-}
+}*/
  /* let headers = new http.headers().set('Authorization', 'Basic ' + btoa(savedToken.username + ":" + savedToken.password));
 headers = headers.set('Content-Type', 'application/json');*/
 
@@ -31,18 +31,25 @@ headers = headers.set('Content-Type', 'application/json');*/
 		console.log('Success update', values);
     
 		const { confirm, ...data } = values;
-		//  http.post('/articles',data)
+	
 		http
 			.put(`/users/${aid}`, { 
         email: data.email,
-    password: data.password,
+   // password: data.password,
+              avatarurl:data.avatarurl,
         username: data.username,
         lastname: data.lastname,
-    firstname: data.firstname
-			//	shelterid: Number(data.shelterid)
+    firstname: data.firstname,
+				shelterid: Number(data.shelterid)
 				
 			},{
-    headers:headers})
+        //    headers:headers})
+        
+        auth: {
+          username: 'candy45',
+          password: 'test123',
+        }
+            })
 			.then(response => {
 				console.log(response.data);
 				alert('User info is updated!');
@@ -57,8 +64,14 @@ headers = headers.set('Content-Type', 'application/json');*/
 
 		// React.useEffect(()=> {
 		http
-			.delete(`/users/${aid}`,{
-    headers:headers})
+	/*		.delete(`/users/${aid}`,{
+   headers:headers})*/
+      .delete(`/users/${aid}`, {
+        auth: {
+          username: 'candy45',
+          password: 'test123',
+        }
+            })
 			.then(response => {
 				console.log(response.data);
 				alert('Users delete!');
@@ -87,8 +100,15 @@ headers = headers.set('Content-Type', 'application/json');*/
 
 	React.useEffect(() => {
 		http
-			.get(`/users/${aid}`, {
-    headers:headers})
+			.get(`/users/${aid}`,
+           /*{
+    headers:headers})*/
+            {
+        auth: {
+          username: 'candy45',
+          password: 'test123',
+        }
+            })
 			.then(response => {
 				console.log(response);
 				setUser(response.data);
@@ -102,7 +122,7 @@ const emailRules = [
     {type: 'email', message: 'The input is not valid E-mail!'},
     {required: true, message: 'Please input your E-mail!' }
 ];
-
+/*
 const passwordRules = [
     { required: true, message: 'Please input your password!' }
 ];
@@ -118,6 +138,7 @@ const confirmRules = [
         }
     })
 ];
+  */
 
 const usernameRules = [
     { required: true, message: 'Please input your username!', whitespace: true }
@@ -129,10 +150,14 @@ const firstnameRules = [
     { required: true, message: 'Please input your  lastname!', whitespace: true }
 ]
   
-const codeRules = [
-    { required: false, message: 'Please input your code!', whitespace: true }
+const shelteridRules = [
+    { required: false, message: 'Please input your shelterid!', whitespace: true }
 ]
 
+const ImageRules = [
+    { required: false, message: 'Please input Image Link', whitespace: true }
+]
+  
 const formItemLayout = {
   labelCol: { xs: { span: 24 }, sm: { span: 6 } },
   wrapperCol: { xs: { span: 24 }, sm: { span: 12 } }
@@ -179,13 +204,21 @@ const tailFormItemLayout = {
             <Input />
         </Form.Item>
           
+            <Form.Item name="shelterid" label="Shelter id " rules={shelteridRules}>
+            <Input />
+        </Form.Item>
+          
+           <Form.Item name="avatarurl" label="Image Url" rules={ImageRules}>
+            <Input />
+        </Form.Item>
+          { /*
         <Form.Item name="password" label="Password" rules={passwordRules} hasFeedback>
             <Input.Password />
         </Form.Item>
 
         <Form.Item name="confirm" label="Confirm Password" rules={confirmRules} hasFeedback>
             <Input.Password />
-        </Form.Item>
+        </Form.Item>*/}
         
 
 

@@ -5,8 +5,6 @@ import { Link } from 'react-router-dom';
 
 class PublicBlogGrid extends React.Component {
 
-
-
   constructor(props) {
     super(props);
     this.state = {
@@ -39,12 +37,10 @@ class PublicBlogGrid extends React.Component {
               <p>Staff ID: {post.staffid}</p>
               <p>breed: {post.breed}</p>
               
-              <img src={post.imageurl} /><br />
+              <img src={post.imageurl} width="220" height="180" /><br />
               <p></p>
               <Link to={`/detaildog/${post.id}`}>Details </Link><br/>
-              {/*<Link to={`/updatedog/${post.id}`}>Update </Link>
-               <Link to={`/deletedog/${post.id}`}>Delete</Link>
-           <Link to={`/updatedog/${post.id}`}>Update or Delete </Link>*/}
+            
 
             </Card>
           </Col>
